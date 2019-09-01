@@ -5,22 +5,22 @@ import edu.cecar.modelo.TextoPlano;
 
 
 public class CargarExpresion {
-     private  int estadoCarga = 0; // Define si la expresion fue cargada de manera exitosa: Estados {-1,0,1}
+     private  int estadoCarga = 0;
      private  boolean[] bandera = {false,false};
      private  boolean banderaP=false;
      private  Expresion expresion = new Expresion();
      
-    public CargarExpresion(String[] args) throws ErrorDeArgumentos{
-        if(args.length>=0 || args.length<=0){
-            throw new ErrorDeArgumentos();
+    public CargarExpresion(String[] args) throws ExcepcionLimiteArgumentos{
+        if(args.length>=7 || args.length<=0){ 
+            throw new ExcepcionLimiteArgumentos(); 
         }
-        
-        //if((args.length>0) && (args.length<=7)){
+
             if( (args.length==1) && ((args[args.length-1].indexOf(".txt")) != -1)){
-                        System.out.println("!Expresion Con Direccion de Archivo Pero sin Argumentos¡");
+                        System.out.println("\n\t!Expresion Con Direccion de Archivo Pero sin Argumentos¡\n");
                         expresion.setDirrecionArchivo(args[args.length-1]);
+                        expresion.setArgumen3(1);
                         estadoCarga = 1;
-            }else if(((args[args.length-1].indexOf(".txt")) != -1)&&(args.length>1)){   //OJO aqui         
+            }else if(((args[args.length-1].indexOf(".txt")) != -1)&&(args.length>1)){         
                         System.out.println("!Expresion Con Direccion de Archivo y Argumentos¡\n");        
                         expresion.setDirrecionArchivo(args[(args.length-1)]); 
                         estadoCarga = 1;
@@ -30,8 +30,7 @@ public class CargarExpresion {
                              bandera[0]=true;
                             }
                             switch(args[i]){
-                                case "-c":
-                                    
+                                case "-c": 
                                     if(!(args[i+1].equals("-l")) && !(args[i+1].equals("-s")) && !(args[i+1].equals("-d")) && !args[i+1].equals(args[args.length-1])){
                                         expresion.setComando1(args[i]);
                                         expresion.setArgumen1(args[i+1]);
@@ -56,11 +55,9 @@ public class CargarExpresion {
                                     expresion.setComando3(args[i]);
                                     if(this.esNumero(args[i+1])){
                                         expresion.setArgumen3(Integer.parseInt(args[i+1])); 
-                                        
                                     }else{
                                         if(args[i+1].equals("-l") || args[i+1].equals("-s") || args[i+1].equals("-d") || args[i+1].equals("-c") || (args[i+1].indexOf(".txt")!=-1)){
                                             expresion.setArgumen3(1);
-                                            //System.out.print("-l argumento a null");
                                         }else{
                                             bandera[1]=true;
                                         }
@@ -74,17 +71,12 @@ public class CargarExpresion {
                                     }else{
                                         if(args[i+1].equals("-l") || args[i+1].equals("-s") || args[i+1].equals("-d") || args[i+1].equals("-c") || (args[i+1].indexOf(".txt")!=-1)){
                                             expresion.setArgumen3(1);
-                                            //System.out.print("-s argumento a null");
                                         }else{
                                             bandera[1]=true;
                                         }
                                     }
 
                                     break;
-                                default: 
-                                    
-                                    
-                                break;
                             }
                             banderaP=true;
                         } 
@@ -96,15 +88,9 @@ public class CargarExpresion {
             }else if(((args[args.length-1].indexOf(".txt")) == -1)&&(args.length>1)){
                  estadoCarga = -1;
             }
-            
-       //}else if(args.length==0){ 
-       //    System.out.println("Error: !No Se Sstipulo Ningun Argumentos, ni Ruta de Archivo");
-       //}else if(args.length>7){
-       //    System.out.println("Error: !Ah Estipulado Mucho Mas Argumentos de los que Requiere el Programa¡");
-       //}
     }
     
-    public  Expresion getExpresion(){
+    public  Expresion getExpresion() {
         return expresion;
     }
 
@@ -125,6 +111,12 @@ public class CargarExpresion {
         }
     }
     
+    public boolean getEstadoLectura3Argumentos(){
+       if(this.expresion.getEstadoComando1() && this.expresion.getEstadoComando2() && this.expresion.getEstadoComando3()){
+           return true;
+       }
+        return false;
+    }
     public boolean esNumero(String cadena){
         boolean resultado;
         try {

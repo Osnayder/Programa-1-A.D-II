@@ -14,7 +14,7 @@ package edu.cecar.arranque;
 
 import edu.cecar.controlador.FlujoArchivo;
 import edu.cecar.controlador.CargarExpresion;
-import edu.cecar.controlador.ErrorDeArgumentos;
+import edu.cecar.controlador.ExcepcionLimiteArgumentos;
 import edu.cecar.controlador.ProcesarDatos;
 import edu.cecar.modelo.Expresion;
 import edu.cecar.modelo.TextoPlano;
@@ -33,10 +33,10 @@ public class AnalizadorTexto {
         try {
             CargarExpresion expresion = new CargarExpresion(args);
                 if(expresion.isEstadoDeLectura()==1){
-                ProcesarDatos.iniciarProceso(expresion);
-        }
-        } catch (ErrorDeArgumentos ex) {
-            Logger.getLogger(AnalizadorTexto.class.getName()).log(Level.SEVERE, null, ex);
+                    ProcesarDatos.iniciarProceso(expresion);
+                }
+        } catch (ExcepcionLimiteArgumentos ex) {
+            System.out.println(ex.getMessage());
         }
         
     }

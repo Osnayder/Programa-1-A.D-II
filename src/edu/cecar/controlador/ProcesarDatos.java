@@ -2,62 +2,56 @@ package edu.cecar.controlador;
 
 import edu.cecar.modelo.Expresion;
 import edu.cecar.modelo.TextoPlano;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-/**
- *
- * @author osnayder
- */
+
 public class ProcesarDatos {
     
     public  static void iniciarProceso(CargarExpresion expresionCargada){
+        int contador = 0, contador2 = 0, cadMasLarga = 0, 
+            contDeCharEnLinea = 0, numLineaMasLarga  = 0,
+            contDeLinea =0, posicionPunterCadLarga  =  0, 
+            cantidadLineasArchivo = 0;
         
-        int contador=0,contador2=0;
-        int cadMasLarga = 0;
-        int contDeCharEnLinea =0;
-        int numLineaMasLarga=0;
-        int contDeLinea=0;
-        int posicionPunterCadLarga=0;
-        int cantidadLineasArchivo=0;
-        int cantEnLinea[];
-        int listaTamañoLineas[];
+        int cantEnLinea[] = null, listaTamañoLineas[] = null;
         int listaDeLineasMayores[] = new int[expresionCargada.getExpresion().getArgumen3()];
         int listaDeLineasMenores[] = new int[expresionCargada.getExpresion().getArgumen3()];
-        
         String[] argumentos = new String[4];
+        String archivoLeido = null;
+        
         argumentos[0] = expresionCargada.getExpresion().getComando1();
         argumentos[1] = expresionCargada.getExpresion().getComando2();
         argumentos[2] = expresionCargada.getExpresion().getComando3();
         argumentos[3] = expresionCargada.getExpresion().getComando3();
    
-        String archivoLeido = FlujoArchivo.flujoEntrada(expresionCargada.getExpresion().getDirrecionArchivo());
-        
-        for(int i=0; i<archivoLeido.length(); i++){
-            if(archivoLeido.charAt(i)=='\n'){
-                cantidadLineasArchivo++;
+        try {
+            archivoLeido = FlujoArchivo.flujoEntrada(expresionCargada.getExpresion().getDirrecionArchivo());
+            for(int i=0; i<archivoLeido.length(); i++){
+                if(archivoLeido.charAt(i)=='\n'){
+                    cantidadLineasArchivo++;
+                }
             }
-        }
-        
-        cantEnLinea= new int[cantidadLineasArchivo];
-        listaTamañoLineas = new int[cantidadLineasArchivo];
-        
-        contDeCharEnLinea = 0;
-        for(int i=0, j=0; i<archivoLeido.length(); i++){
-            contDeCharEnLinea++;
-            if(archivoLeido.charAt(i)=='\n'){
-                listaTamañoLineas[j] = contDeCharEnLinea-1;
-                contDeCharEnLinea=0;
-                j++;
-            }
-        }
-        
-        
-        
-        if(!expresionCargada.getExpresion().getEstadoComando1() && 
-           !expresionCargada.getExpresion().getEstadoComando2() && 
-           !expresionCargada.getExpresion().getEstadoComando3()){
-                System.out.println("\n------------------------------------------------------------");
-                System.out.println("El Archivo Cargado: \n"+archivoLeido+"\n");
+                cantEnLinea= new int[cantidadLineasArchivo];
+                listaTamañoLineas = new int[cantidadLineasArchivo];
                 contDeCharEnLinea = 0;
+                
+            for(int i=0, j=0; i<archivoLeido.length(); i++){
+            contDeCharEnLinea++;
+                if(archivoLeido.charAt(i)=='\n'){
+                    listaTamañoLineas[j] = contDeCharEnLinea-1;
+                    contDeCharEnLinea=0;
+                    j++;
+                }
+            }
+        } catch (ExcepcionArchivoNoCargado ex) {
+            System.out.println(ex.getMessage());
+        }
+        
+        if(expresionCargada.getEstadoLectura3Argumentos())  {
+                
+            System.out.println("\nEl Contenido del Archivo Cargado Es El Siguiente: \n\n"+archivoLeido+"\n");
+            contDeCharEnLinea = 0;
                 for(int i=0; i<archivoLeido.length(); i++){
                      contDeCharEnLinea++; 
                      if(archivoLeido.charAt(i)=='\n'){ 
@@ -71,15 +65,14 @@ public class ProcesarDatos {
                      }
                 }
                 
-                System.out.println("\n---------------------------------------\n Resultado:\n");
-                System.out.print("\nLa Linea mas Larga es la Numero: "+numLineaMasLarga+"\nContiene: "+cadMasLarga+" caracteres.\nLinea de Texto: ");
+            System.out.println("\n---------------------------------------\n Resultado:\n");
+            System.out.print("\nLa Linea mas Larga es la Numero: "+numLineaMasLarga+"\nContiene: "+cadMasLarga+" caracteres.\nLinea de Texto: ");
                 for(int i=(posicionPunterCadLarga-cadMasLarga); i<posicionPunterCadLarga; i++){
                     System.out.print(archivoLeido.charAt(i));
                 }
                 System.out.println("\n");
 
         }else{           
-            
              System.out.println("Comando 1: "+expresionCargada.getExpresion().getComando1()+" Argumento 1: "+expresionCargada.getExpresion().getArgumen1()+"\n"+
                                 "Comando 2: "+expresionCargada.getExpresion().getComando2()+" Argumento 2: "+expresionCargada.getExpresion().getArgumen2()+"\n"+
                                 "Comando 3: "+expresionCargada.getExpresion().getComando3()+" Argumento 3: "+expresionCargada.getExpresion().getArgumen3()+"\n\n"+
@@ -205,8 +198,7 @@ public class ProcesarDatos {
                 }
               }
             }
-            
-            
-        }
+     
+        }  
     }
 }

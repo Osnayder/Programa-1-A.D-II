@@ -27,26 +27,27 @@ public class FlujoArchivo {
         }
     }
     
-    public static String flujoEntrada(String ruta){
+    public static String flujoEntrada(String ruta) throws ExcepcionArchivoNoCargado{
         String texto = "";
         String linea = "";
         try {
             FileReader archivo =  new FileReader(ruta);
             BufferedReader contenido = new BufferedReader(archivo);
-  
             try {
                 while((linea=contenido.readLine())!=null ){
                      texto = texto + linea + "\n";
                 }
-                return texto;
-                
             } catch (IOException ex) {
-                Logger.getLogger(FlujoArchivo.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.print(ex.getMessage());
             }
         } catch (FileNotFoundException ex) {
             System.out.print(ex.getMessage());
-
+            texto = null;
         }
-        return null;
+        
+        if(texto==null){
+            throw new ExcepcionArchivoNoCargado();
+        }
+        return texto;
     }
 }
