@@ -11,7 +11,7 @@ public class CargarExpresion {
      private  Expresion expresion = new Expresion();
      
     public CargarExpresion(String[] args) throws ExcepcionLimiteArgumentos{
-        if(args.length>=7 || args.length<=0){ 
+        if(args.length>7 || args.length<=0){ 
             throw new ExcepcionLimiteArgumentos(); 
         }
 
