@@ -1,0 +1,12 @@
+este es un ejemplo de un archivo de texto en formato .txt, esta es una prueba. jader
+que verifica que el analizador de texto esta cargando el archivo, este archivo
+se encuentra ubicado juntos dentro del proyecto de netBeans. osnayder . mapa mapa
+ahora voy a repetir frases o palabras para verificar el correcto funcionamiento:
+esta es la linea mas corta.
+amarillo amarillo celular mora mora ana ana amarillo celular mora perro. jader
+hospital amarillo perro hospital camara avion hospital amarillo. jader. mapa 
+ahora voy a escribir una linea muy larga de texto, para verificar que el analizador funciona bien
+esta es otra linea de relleno. mapa mapa mapa mapa mapa mapa mapa mapa mapa mapa
+la mejor asignatura es analisis y diseno II. osnayder
+la otra mejor es analisis y diseno ii. osnayder
+esta es la ultima linea del archivo. mapa mapa
