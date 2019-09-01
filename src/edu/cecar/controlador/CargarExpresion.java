@@ -9,7 +9,6 @@ public class CargarExpresion {
      private  boolean[] bandera = {false,false};
      private  boolean banderaP=false;
      private  Expresion expresion = new Expresion();
-     int jader;
      
     public CargarExpresion(String[] args) throws ExcepcionLimiteArgumentos{
         if(args.length>7 || args.length<=0){ 
