@@ -10,9 +10,12 @@ public class CargarExpresion {
      private  boolean banderaP=false;
      private  Expresion expresion = new Expresion();
      
-    public CargarExpresion(String[] args) {
+    public CargarExpresion(String[] args) throws ErrorDeArgumentos{
+        if(args.length>=0 || args.length<=0){
+            throw new ErrorDeArgumentos();
+        }
         
-        if((args.length>0) && (args.length<=7)){
+        //if((args.length>0) && (args.length<=7)){
             if( (args.length==1) && ((args[args.length-1].indexOf(".txt")) != -1)){
                         System.out.println("!Expresion Con Direccion de Archivo Pero sin Argumentos¡");
                         expresion.setDirrecionArchivo(args[args.length-1]);
@@ -94,11 +97,11 @@ public class CargarExpresion {
                  estadoCarga = -1;
             }
             
-       }else if(args.length==0){ 
-           System.out.println("Error: !No Se Sstipulo Ningun Argumentos, ni Ruta de Archivo");
-       }else if(args.length>7){
-           System.out.println("Error: !Ah Estipulado Mucho Mas Argumentos de los que Requiere el Programa¡");
-       }
+       //}else if(args.length==0){ 
+       //    System.out.println("Error: !No Se Sstipulo Ningun Argumentos, ni Ruta de Archivo");
+       //}else if(args.length>7){
+       //    System.out.println("Error: !Ah Estipulado Mucho Mas Argumentos de los que Requiere el Programa¡");
+       //}
     }
     
     public  Expresion getExpresion(){
@@ -106,7 +109,6 @@ public class CargarExpresion {
     }
 
     public int isEstadoDeLectura() {
-        
         return estadoCarga;
     }
     
