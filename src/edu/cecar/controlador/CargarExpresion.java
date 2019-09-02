@@ -1,3 +1,16 @@
+/** Clase: CargarExpresion
+ * 
+ * @version: 0.1
+ *  
+ * @sincelejo: 21/08/2019
+ * 
+ * Fecha de Modificación: 
+ * 
+ * @author: Osnayder Conde Rodriguez
+ * 
+ * Copyrigth: CECAR
+ */
+
 package edu.cecar.controlador;
 
 import edu.cecar.modelo.Expresion;
@@ -10,8 +23,9 @@ public class CargarExpresion {
     public CargarExpresion(String[] args) throws ExcepcionCargarArgumentos{
         if(args.length>7 || args.length<=0){ 
             throw new ExcepcionCargarArgumentos("!Ah Sobrepasado El Numero de Argumento Requerido o No Ingreso Ningun Argumento¡"); 
+        }else if(args[args.length-1].indexOf(".txt")==-1 ){
+           throw new ExcepcionCargarArgumentos("!No Especificó Ruta de Archivo¡"); 
         }
-
             if( (args.length==1) && ((args[args.length-1].indexOf(".txt")) != -1)){
                         System.out.println("\n\t!Expresion Con Direccion de Archivo Pero sin Argumentos¡\n");
                         expresion.setDirrecionArchivo(args[args.length-1]);
