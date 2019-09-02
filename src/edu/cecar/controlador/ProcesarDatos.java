@@ -1,5 +1,19 @@
+/** Clase: ProcesarDatos
+ * 
+ * @version: 0.1
+ *  
+ * @sincelejo: 21/08/2019
+ * 
+ * Fecha de Modificación: 
+ * 
+ * @author: Osnayder Conde Rodriguez
+ * 
+ * Copyrigth: CECAR
+ */
+
 package edu.cecar.controlador;
 
+import edu.cecar.modelo.TextoPlano;
 
 public class ProcesarDatos {
     
@@ -8,7 +22,8 @@ public class ProcesarDatos {
                        contDeLinea =0, posicionPunterCadLarga  =  0, 
                        cantidadLineasArchivo = 0;
     private static String[] argumentos = new String[4];
-    private static String archivoLeido = null;
+    private static String archivoLeido = null, puente = null;
+    private static TextoPlano textoGuardar  = null;
     private static  int cantEnLinea[] = null, listaTamañoLineas[] = null;
     
     public  static void iniciarProceso(CargarExpresion expresionCargada){
@@ -70,16 +85,17 @@ public class ProcesarDatos {
             argumentos[2] = expresionCargada.getExpresion().getComando3();
             argumentos[3] = expresionCargada.getExpresion().getComando3();
             
+            
              System.out.println("Lista de Argumentos y Parametros Cargador\n");
              System.out.println("Comando 1: "+expresionCargada.getExpresion().getComando1()+" Argumento 1: "+expresionCargada.getExpresion().getArgumen1()+"\n"+
                                 "Comando 2: "+expresionCargada.getExpresion().getComando2()+" Argumento 2: "+expresionCargada.getExpresion().getArgumen2()+"\n"+
                                 "Comando 3: "+expresionCargada.getExpresion().getComando3()+" Argumento 3: "+expresionCargada.getExpresion().getArgumen3()+"\n"+
                                 "Nombre de archivo: "+expresionCargada.getExpresion().getDirrecionArchivo()+" \n");
-             System.out.println("\n________________________________________________________________________________________\n");
-             System.out.print("#\tContenido del Arhivo: \n"+
-                                "_________________________________________________________________________________________\n"
+             System.out.println("\n\t================================");
+             System.out.println("\t     Contenido del Arhivo: \n"+
+                                "\t=================================\n\n"
                                 +archivoLeido);
-             System.out.println("________________________________________________________________________________________");
+             System.out.println("#####################################################\n");
             
              
              boolean controladorEntrada = true;
@@ -105,10 +121,26 @@ public class ProcesarDatos {
                                 }
                             }
                             
+                            contador = 0;
+                            puente = cantEnLinea[contador]+" ";
+                            contador++;
+                            for(int f=0; f<archivoLeido.length()-1; f++){
+                                puente = puente + archivoLeido.charAt(f);
+                                if(archivoLeido.charAt(f)=='\n'){
+                                    puente = puente + "\r\n" + cantEnLinea[contador]+" ";
+                                    contador++;
+                                }
+                            }
                             
-                            for(int k=0; k<cantidadLineasArchivo; k++){
-                                System.out.println(" "+cantEnLinea[k]);
-                            } 
+                            textoGuardar = new TextoPlano();
+                            textoGuardar.setTexto(puente);
+                            textoGuardar.setRuta("busqueda");
+                         if(textoGuardar!=null){
+                             FlujoArchivo.flujoSalida(textoGuardar);
+                             System.out.println("\t!Argumento -c Procesado Exitosamente¡ ");
+                             System.out.println("Nombre Archivo Resultado de Argumento <-c>: "+textoGuardar.getRuta()+"AnaTex.txt");
+                         }
+                         
                         }
                         break;
                     case "-d": 
@@ -118,16 +150,12 @@ public class ProcesarDatos {
                         break;
                     case "-l":
                         
-                        if(expresionCargada.getExpresion().getArgumen3()>0 && controladorEntrada){
+                        if(expresionCargada.getExpresion().getArgumen3()>0 && controladorEntrada && (expresionCargada.getExpresion().getArgumen3()<=cantidadLineasArchivo)){
                             int listaDeLineasMayores[] = new int[expresionCargada.getExpresion().getArgumen3()];                            
                             contador = 0;
                             contador2 = 0;
                             listaDeLineasMayores[contador]=0;
                             
-                            for(int f=0; f<cantidadLineasArchivo; f++){
-                                System.out.print(" "+listaTamañoLineas[f]);
-                            }
-                            System.out.print("\n");
                             for(int f=0; f<expresionCargada.getExpresion().getArgumen3(); f++){
                                 for(int l=0; l<cantidadLineasArchivo; l++){
                                     if(listaDeLineasMayores[contador]<listaTamañoLineas[l]){
@@ -139,44 +167,47 @@ public class ProcesarDatos {
                                 contador++;
                             }
                             
-                            for(int f=0; f<expresionCargada.getExpresion().getArgumen3(); f++){
-                                System.out.println("->"+listaDeLineasMayores[f]);
-                            }
-                            
                             contDeCharEnLinea = 0;
                             contador = 0;
+                            puente  = "";
+                            textoGuardar = new TextoPlano();
+                            
                             for(int d=0; d<expresionCargada.getExpresion().getArgumen3(); d++){
                                 for(int f=0; f<archivoLeido.length(); f++){
                                     contDeCharEnLinea++;
-                                    if((archivoLeido.charAt(f)=='\n')){
+                                    if((archivoLeido.charAt(f)=='\n') && (contador<expresionCargada.getExpresion().getArgumen3())){
                                         if(((contDeCharEnLinea-1)==listaDeLineasMayores[contador])){
                                             for(int g=(f-(contDeCharEnLinea-1)); g<(f+1); g++){
-                                                System.out.print(archivoLeido.charAt(g));
+                                                puente = puente + archivoLeido.charAt(g);
                                             }
-                                            System.out.print("\n");
+                                            puente = puente + "\r\n";
+                                            contador++;
                                         }
                                         contDeCharEnLinea=0;
                                     }
-                               }
-                                contador++;    
+                               }   
                             }
+                            textoGuardar.setTexto(puente);
+                            textoGuardar.setRuta("masLarga");
+                            FlujoArchivo.flujoSalida(textoGuardar);
+                            
+                            System.out.println("\t!Argumento -l Procesado Exitosamente¡ ");
+                            System.out.println("Nombre Archivo Resultado de Argumento <-l>: "+textoGuardar.getRuta()+"AnaTex.txt");
                             controladorEntrada=false;
+                        }else if((expresionCargada.getExpresion().getArgumen3()>cantidadLineasArchivo)){
+                            System.out.println("¡Error! Usted Especifico Buscar Las "+expresionCargada.getExpresion().getArgumen3()+
+                                               " Mas Largas y Solo hay "+cantidadLineasArchivo+" Lineas");
                         }
                           
                         break;
                     case "-s": 
-                        if(expresionCargada.getExpresion().getArgumen3()>0 && controladorEntrada){
+                        if(expresionCargada.getExpresion().getArgumen3()>0 && controladorEntrada && (expresionCargada.getExpresion().getArgumen3()<=cantidadLineasArchivo)){
                             int listaDeLineasMenores[] = new int[expresionCargada.getExpresion().getArgumen3()];
                             contador = 0;
                             contador2 = 0;
-                            listaDeLineasMenores[contador]=500*500;
-                            
-                            for(int f=0; f<cantidadLineasArchivo; f++){
-                                System.out.print(" "+listaTamañoLineas[f]);
-                            }
-                            
-                            System.out.print("\n");
+            
                             for(int f=0; f<expresionCargada.getExpresion().getArgumen3(); f++){
+                               listaDeLineasMenores[contador]=500*500;
                                 for(int l=0; l<cantidadLineasArchivo; l++){
                                     if(listaDeLineasMenores[contador]>listaTamañoLineas[l]){
                                         listaDeLineasMenores[contador] = listaTamañoLineas[l];
@@ -187,17 +218,40 @@ public class ProcesarDatos {
                                 contador++;
                             }
                             
-                            for(int f=0; f<expresionCargada.getExpresion().getArgumen3(); f++){
-                                System.out.println("->"+listaDeLineasMenores[f]);
+                            contDeCharEnLinea = 0;
+                            contador = 0;
+                            puente  = "";
+                            textoGuardar = new TextoPlano();
+                            for(int d=0; d<expresionCargada.getExpresion().getArgumen3(); d++){
+                                for(int f=0; f<archivoLeido.length(); f++){
+                                    contDeCharEnLinea++;
+                                    if((archivoLeido.charAt(f)=='\n') && (contador<expresionCargada.getExpresion().getArgumen3())){
+                                        if(((contDeCharEnLinea-1)==listaDeLineasMenores[contador])){
+                                            for(int g=(f-(contDeCharEnLinea-1)); g<(f+1); g++){
+                                                puente = puente + archivoLeido.charAt(g);
+                                            }
+                                            puente = puente + "\r\n";
+                                            contador++;
+                                        }
+                                        contDeCharEnLinea=0;
+                                    }
+                               }   
                             }
+                            textoGuardar.setTexto(puente);
+                            textoGuardar.setRuta("masCorta");
+                            FlujoArchivo.flujoSalida(textoGuardar);
                             
+                            System.out.println("\t!Argumento -s Procesado Exitosamente¡ ");
+                            System.out.println("Nombre Archivo Resultado de Argumento <-s>: "+textoGuardar.getRuta()+"AnaTex.txt");
                             controladorEntrada=false;
+                        }else if((expresionCargada.getExpresion().getArgumen3()>cantidadLineasArchivo)){
+                            System.out.println("¡Error! Usted Especifico Buscar Las "+expresionCargada.getExpresion().getArgumen3()+
+                                               " Mas Cortas y Solo hay "+cantidadLineasArchivo+" Lineas");
                         }
-                        break;
+                    break;
                 }
-              }
+             }
             }
-     
         }  
     }
 }
