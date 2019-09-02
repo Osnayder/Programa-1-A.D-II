@@ -1,10 +1,5 @@
 package edu.cecar.controlador;
 
-import edu.cecar.modelo.Expresion;
-import edu.cecar.modelo.TextoPlano;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 
 public class ProcesarDatos {
     
@@ -42,7 +37,9 @@ public class ProcesarDatos {
             
         }
         
-        if(!expresionCargada.getEstadoLectura3Comando()&& (archivoLeido!=null))  {
+        if(!expresionCargada.getExpresion().getEstadoComando1() && 
+           !expresionCargada.getExpresion().getEstadoComando2() &&
+           !expresionCargada.getExpresion().getEstadoComando3() &&(archivoLeido!=null))  {
                 
             System.out.println("\nEl Contenido del Archivo Cargado Es El Siguiente: \n\n"+archivoLeido+"\n");
             contDeCharEnLinea = 0;
@@ -73,11 +70,11 @@ public class ProcesarDatos {
             argumentos[2] = expresionCargada.getExpresion().getComando3();
             argumentos[3] = expresionCargada.getExpresion().getComando3();
             
+             System.out.println("Lista de Argumentos y Parametros Cargador\n");
              System.out.println("Comando 1: "+expresionCargada.getExpresion().getComando1()+" Argumento 1: "+expresionCargada.getExpresion().getArgumen1()+"\n"+
                                 "Comando 2: "+expresionCargada.getExpresion().getComando2()+" Argumento 2: "+expresionCargada.getExpresion().getArgumen2()+"\n"+
-                                "Comando 3: "+expresionCargada.getExpresion().getComando3()+" Argumento 3: "+expresionCargada.getExpresion().getArgumen3()+"\n\n"+
-                                "---------------------------------\nNombre de archivo:"+expresionCargada.getExpresion().getDirrecionArchivo()+"\n"+
-                                "---------------------------------\n\n");
+                                "Comando 3: "+expresionCargada.getExpresion().getComando3()+" Argumento 3: "+expresionCargada.getExpresion().getArgumen3()+"\n"+
+                                "Nombre de archivo: "+expresionCargada.getExpresion().getDirrecionArchivo()+" \n");
              System.out.println("\n________________________________________________________________________________________\n");
              System.out.print("#\tContenido del Arhivo: \n"+
                                 "_________________________________________________________________________________________\n"
