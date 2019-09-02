@@ -145,7 +145,7 @@ public class ProcesarDatos {
                         break;
                     case "-d": 
                         if(expresionCargada.getExpresion().getArgumen2()>0){
-                            System.out.print("mx ");
+                            System.out.print("-d aun no esta programado ");
                         }
                         break;
                     case "-l":
