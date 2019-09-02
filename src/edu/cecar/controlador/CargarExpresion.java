@@ -4,7 +4,7 @@ import edu.cecar.modelo.Expresion;
 
 public class CargarExpresion {
      private  int estadoCarga = 0;
-     private  boolean banderaP=false;
+     private  boolean banderaP=false, banderaS = false;
      private  Expresion expresion = new Expresion();
      
     public CargarExpresion(String[] args) throws ExcepcionCargarArgumentos{
@@ -41,6 +41,8 @@ public class CargarExpresion {
                                         if(args[i+1].equals("-l") || args[i+1].equals("-s") || args[i+1].equals("-d") || args[i+1].equals("-c") || (args[i+1].indexOf(".txt")!=-1)){
                                             expresion.setArgumen2(1);
                                             banderaP = true;
+                                        }else{
+                                            banderaS = true;
                                         }
                                     }
                                     break;
@@ -53,6 +55,8 @@ public class CargarExpresion {
                                         if(args[i+1].equals("-l") || args[i+1].equals("-s") || args[i+1].equals("-d") || args[i+1].equals("-c") || (args[i+1].indexOf(".txt")!=-1)){
                                             expresion.setArgumen3(1);
                                             banderaP = true;
+                                        }else{
+                                            banderaS = true;
                                         }
                                     }
                                     break;
@@ -65,12 +69,18 @@ public class CargarExpresion {
                                         if(args[i+1].equals("-l") || args[i+1].equals("-s") || args[i+1].equals("-d") || args[i+1].equals("-c") || (args[i+1].indexOf(".txt")!=-1)){
                                             expresion.setArgumen3(1);
                                             banderaP = true;
+                                        }else{
+                                            banderaS = true;
                                         }
                                     }
                                   break;
+                                default:
+                                    if(!this.esNumero(args[i]) && !args[i-1].equals("-c") && i<(args.length-2)){
+                                       throw new ExcepcionCargarArgumentos("!Upss¡ Introdujo Argumentos Invalidos"); 
+                                    }
                             }
                         } 
-                if(banderaP!=true){
+                if((banderaP!=true) || banderaS){
                     throw new ExcepcionCargarArgumentos("!Upss¡ Introdujo Argumentos Invalidos");
                 }                    
             }else if(((args[args.length-1].indexOf(".txt")) == -1)&&(args.length>1)){
