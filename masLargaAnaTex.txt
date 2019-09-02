@@ -6,3 +6,19 @@ se encuentra ubicado juntos dentro del proyecto de netBeans. osnayder . mapa map
 
 ahora voy a repetir frases o palabras para verificar el correcto funcionamiento:
 
+esta es otra linea de relleno. mapa mapa mapa mapa mapa mapa mapa mapa mapa mapa
+
+que verifica que el analizador de texto esta cargando el archivo, este archivo
+
+amarillo amarillo celular mora mora ana ana amarillo celular mora perro. jader
+
+hospital amarillo perro hospital camara avion hospital amarillo. jader. mapa 
+
+la mejor asignatura es analisis y diseno II. osnayder
+
+la otra mejor es analisis y diseno ii. osnayder
+
+esta es la ultima linea del archivo. mapa mapa
+
+esta es la linea mas corta.
+
