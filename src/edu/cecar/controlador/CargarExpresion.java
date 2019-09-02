@@ -1,18 +1,15 @@
 package edu.cecar.controlador;
 
 import edu.cecar.modelo.Expresion;
-import edu.cecar.modelo.TextoPlano;
-
 
 public class CargarExpresion {
      private  int estadoCarga = 0;
-     private  boolean[] bandera = {false,false};
      private  boolean banderaP=false;
      private  Expresion expresion = new Expresion();
      
-    public CargarExpresion(String[] args) throws ExcepcionLimiteArgumentos{
+    public CargarExpresion(String[] args) throws ExcepcionCargarArgumentos{
         if(args.length>7 || args.length<=0){ 
-            throw new ExcepcionLimiteArgumentos(); 
+            throw new ExcepcionCargarArgumentos(); 
         }
 
             if( (args.length==1) && ((args[args.length-1].indexOf(".txt")) != -1)){
@@ -20,46 +17,42 @@ public class CargarExpresion {
                         expresion.setDirrecionArchivo(args[args.length-1]);
                         expresion.setArgumen3(1);
                         estadoCarga = 1;
-            }else if(((args[args.length-1].indexOf(".txt")) != -1)&&(args.length>1)){         
+            }else if(((args[args.length-1].indexOf(".txt")) != -1)&&(args.length>1)){
                         System.out.println("!Expresion Con Direccion de Archivo y Argumentos¡\n");        
                         expresion.setDirrecionArchivo(args[(args.length-1)]); 
                         estadoCarga = 1;
                         
                         for(int i=0; i<args.length; i++){
-                            if(!args[i].equals("-c") && !args[i].equals("-d") && !args[i].equals("-l") && !args[i].equals("-s") && (i<(args.length-2) && (!this.esNumero(args[i])))){
-                             bandera[0]=true;
-                            }
+                           
                             switch(args[i]){
                                 case "-c": 
                                     if(!(args[i+1].equals("-l")) && !(args[i+1].equals("-s")) && !(args[i+1].equals("-d")) && !args[i+1].equals(args[args.length-1])){
                                         expresion.setComando1(args[i]);
                                         expresion.setArgumen1(args[i+1]);
-                                        bandera[1]=false;
+                                        banderaP = true;
                                     }
                                     break;
                                 case "-d":
                                     expresion.setComando2(args[i]);
                                     if(this.esNumero(args[i+1])){
                                         expresion.setArgumen2(Integer.parseInt(args[i+1])); 
-                                        
+                                        banderaP = true;
                                     }else{
                                         if(args[i+1].equals("-l") || args[i+1].equals("-s") || args[i+1].equals("-d") || args[i+1].equals("-c") || (args[i+1].indexOf(".txt")!=-1)){
                                             expresion.setArgumen2(1);
-                                        }else{
-                                            bandera[1]=true;
+                                            banderaP = true;
                                         }
                                     }
-
                                     break;
                                 case "-l":
                                     expresion.setComando3(args[i]);
                                     if(this.esNumero(args[i+1])){
-                                        expresion.setArgumen3(Integer.parseInt(args[i+1])); 
+                                        expresion.setArgumen3(Integer.parseInt(args[i+1]));
+                                        banderaP = true;
                                     }else{
                                         if(args[i+1].equals("-l") || args[i+1].equals("-s") || args[i+1].equals("-d") || args[i+1].equals("-c") || (args[i+1].indexOf(".txt")!=-1)){
                                             expresion.setArgumen3(1);
-                                        }else{
-                                            bandera[1]=true;
+                                            banderaP = true;
                                         }
                                     }
                                     break;
@@ -67,24 +60,19 @@ public class CargarExpresion {
                                     expresion.setComando3(args[i]);
                                     if(this.esNumero(args[i+1])){
                                         expresion.setArgumen3(Integer.parseInt(args[i+1])); 
-                                        
+                                        banderaP = true;
                                     }else{
                                         if(args[i+1].equals("-l") || args[i+1].equals("-s") || args[i+1].equals("-d") || args[i+1].equals("-c") || (args[i+1].indexOf(".txt")!=-1)){
                                             expresion.setArgumen3(1);
-                                        }else{
-                                            bandera[1]=true;
+                                            banderaP = true;
                                         }
                                     }
-
-                                    break;
+                                  break;
                             }
-                            banderaP=true;
                         } 
-                        if(bandera[0] && bandera[1]){
-                            estadoCarga = -1;
-                            System.out.println("Ingreso parametros erroneosss");
-                        }
-                    
+                if(banderaP!=true){
+                    throw new ExcepcionCargarArgumentos();
+                }                    
             }else if(((args[args.length-1].indexOf(".txt")) == -1)&&(args.length>1)){
                  estadoCarga = -1;
             }
@@ -111,7 +99,7 @@ public class CargarExpresion {
         }
     }
     
-    public boolean getEstadoLectura3Argumentos(){
+    public boolean getEstadoLectura3Comando(){
        if(this.expresion.getEstadoComando1() && this.expresion.getEstadoComando2() && this.expresion.getEstadoComando3()){
            return true;
        }

@@ -8,23 +8,16 @@ import java.util.logging.Logger;
 
 public class ProcesarDatos {
     
+    private static int contador = 0, contador2 = 0, cadMasLarga = 0, 
+                       contDeCharEnLinea = 0, numLineaMasLarga  = 0,
+                       contDeLinea =0, posicionPunterCadLarga  =  0, 
+                       cantidadLineasArchivo = 0;
+    private static String[] argumentos = new String[4];
+    private static String archivoLeido = null;
+    private static  int cantEnLinea[] = null, listaTamañoLineas[] = null;
+    
     public  static void iniciarProceso(CargarExpresion expresionCargada){
-        int contador = 0, contador2 = 0, cadMasLarga = 0, 
-            contDeCharEnLinea = 0, numLineaMasLarga  = 0,
-            contDeLinea =0, posicionPunterCadLarga  =  0, 
-            cantidadLineasArchivo = 0;
         
-        int cantEnLinea[] = null, listaTamañoLineas[] = null;
-        int listaDeLineasMayores[] = new int[expresionCargada.getExpresion().getArgumen3()];
-        int listaDeLineasMenores[] = new int[expresionCargada.getExpresion().getArgumen3()];
-        String[] argumentos = new String[4];
-        String archivoLeido = null;
-        
-        argumentos[0] = expresionCargada.getExpresion().getComando1();
-        argumentos[1] = expresionCargada.getExpresion().getComando2();
-        argumentos[2] = expresionCargada.getExpresion().getComando3();
-        argumentos[3] = expresionCargada.getExpresion().getComando3();
-   
         try {
             archivoLeido = FlujoArchivo.flujoEntrada(expresionCargada.getExpresion().getDirrecionArchivo());
             for(int i=0; i<archivoLeido.length(); i++){
@@ -46,9 +39,10 @@ public class ProcesarDatos {
             }
         } catch (ExcepcionArchivoNoCargado ex) {
             System.out.println(ex.getMessage());
+            
         }
         
-        if(expresionCargada.getEstadoLectura3Argumentos())  {
+        if(!expresionCargada.getEstadoLectura3Comando()&& (archivoLeido!=null))  {
                 
             System.out.println("\nEl Contenido del Archivo Cargado Es El Siguiente: \n\n"+archivoLeido+"\n");
             contDeCharEnLinea = 0;
@@ -65,14 +59,20 @@ public class ProcesarDatos {
                      }
                 }
                 
-            System.out.println("\n---------------------------------------\n Resultado:\n");
-            System.out.print("\nLa Linea mas Larga es la Numero: "+numLineaMasLarga+"\nContiene: "+cadMasLarga+" caracteres.\nLinea de Texto: ");
+            System.out.print("Resultado:\nLa Linea mas Larga es la Numero: "+numLineaMasLarga+
+                                "\nContiene: "+cadMasLarga+" caracteres.\nLinea de Texto: [");
                 for(int i=(posicionPunterCadLarga-cadMasLarga); i<posicionPunterCadLarga; i++){
                     System.out.print(archivoLeido.charAt(i));
                 }
-                System.out.println("\n");
+                System.out.println("]\n");
 
-        }else{           
+        }else if(archivoLeido!=null){
+            
+            argumentos[0] = expresionCargada.getExpresion().getComando1();
+            argumentos[1] = expresionCargada.getExpresion().getComando2();
+            argumentos[2] = expresionCargada.getExpresion().getComando3();
+            argumentos[3] = expresionCargada.getExpresion().getComando3();
+            
              System.out.println("Comando 1: "+expresionCargada.getExpresion().getComando1()+" Argumento 1: "+expresionCargada.getExpresion().getArgumen1()+"\n"+
                                 "Comando 2: "+expresionCargada.getExpresion().getComando2()+" Argumento 2: "+expresionCargada.getExpresion().getArgumen2()+"\n"+
                                 "Comando 3: "+expresionCargada.getExpresion().getComando3()+" Argumento 3: "+expresionCargada.getExpresion().getArgumen3()+"\n\n"+
@@ -122,6 +122,7 @@ public class ProcesarDatos {
                     case "-l":
                         
                         if(expresionCargada.getExpresion().getArgumen3()>0 && controladorEntrada){
+                            int listaDeLineasMayores[] = new int[expresionCargada.getExpresion().getArgumen3()];                            
                             contador = 0;
                             contador2 = 0;
                             listaDeLineasMayores[contador]=0;
@@ -168,6 +169,7 @@ public class ProcesarDatos {
                         break;
                     case "-s": 
                         if(expresionCargada.getExpresion().getArgumen3()>0 && controladorEntrada){
+                            int listaDeLineasMenores[] = new int[expresionCargada.getExpresion().getArgumen3()];
                             contador = 0;
                             contador2 = 0;
                             listaDeLineasMenores[contador]=500*500;
