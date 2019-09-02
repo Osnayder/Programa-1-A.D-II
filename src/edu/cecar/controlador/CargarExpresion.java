@@ -9,7 +9,7 @@ public class CargarExpresion {
      
     public CargarExpresion(String[] args) throws ExcepcionCargarArgumentos{
         if(args.length>7 || args.length<=0){ 
-            throw new ExcepcionCargarArgumentos(); 
+            throw new ExcepcionCargarArgumentos("!Ah Sobrepasado El Numero de Argumento Requerido o No Ingreso Ningun Argumento¡"); 
         }
 
             if( (args.length==1) && ((args[args.length-1].indexOf(".txt")) != -1)){
@@ -71,7 +71,7 @@ public class CargarExpresion {
                             }
                         } 
                 if(banderaP!=true){
-                    throw new ExcepcionCargarArgumentos();
+                    throw new ExcepcionCargarArgumentos("!Upss¡ Introdujo Argumentos Invalidos");
                 }                    
             }else if(((args[args.length-1].indexOf(".txt")) == -1)&&(args.length>1)){
                  estadoCarga = -1;
