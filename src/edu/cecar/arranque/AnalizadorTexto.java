@@ -15,7 +15,7 @@ package edu.cecar.arranque;
 import edu.cecar.controlador.FlujoArchivo;
 import edu.cecar.controlador.CargarExpresion;
 import edu.cecar.controlador.ExcepcionCargarArgumentos;
-import edu.cecar.controlador.ProcesarDatos;
+import edu.cecar.controlador.ProcesarExpresion;
 import edu.cecar.modelo.Expresion;
 import edu.cecar.modelo.TextoPlano;
 import java.util.logging.Level;
@@ -33,7 +33,7 @@ public class AnalizadorTexto {
         try {
             CargarExpresion expresion = new CargarExpresion(args);
                 if(expresion.isEstadoDeLectura()==1){
-                    ProcesarDatos.iniciarProceso(expresion);
+                    ProcesarExpresion.iniciarProceso(expresion);
                 }
         } catch (ExcepcionCargarArgumentos ex) {
             System.out.println(ex.getMessage());

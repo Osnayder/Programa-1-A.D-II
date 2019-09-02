@@ -15,7 +15,7 @@ package edu.cecar.controlador;
 
 import edu.cecar.modelo.TextoPlano;
 
-public class ProcesarDatos {
+public class ProcesarExpresion {
     
     private static int contador = 0, contador2 = 0, cadMasLarga = 0, 
                        contDeCharEnLinea = 0, numLineaMasLarga  = 0,
