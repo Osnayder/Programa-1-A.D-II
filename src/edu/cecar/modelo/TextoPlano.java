@@ -1,9 +1,18 @@
+/** Clase: TextoPlano 
+ * @version: 0.1
+ *  
+ * @sincelejo: 21/08/2019
+ * 
+ * Fecha de Modificación: 
+ * 
+ * @author: Osnayder Conde Rodriguez
+ * 
+ * Copyrigth: CECAR
+ */
+
 package edu.cecar.modelo;
 
-/**
- *
- * @author osnayder
- */
+
 public class TextoPlano {
     private String texto;
     private String ruta;

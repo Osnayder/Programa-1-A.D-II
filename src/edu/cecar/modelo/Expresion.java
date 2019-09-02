@@ -1,4 +1,4 @@
-/* Interface: UsuarioControlador
+/* Clase: Expresion
  * 
  * @version: 0.1
  *  

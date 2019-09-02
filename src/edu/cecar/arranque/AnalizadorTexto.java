@@ -1,4 +1,4 @@
-/* Interface: UsuarioControlador
+/* Clase: AnlizadorTexto
  * 
  * @version: 0.1
  *  

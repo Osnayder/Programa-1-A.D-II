@@ -1,6 +1,4 @@
-package edu.cecar.controlador;
-
-/** Interface: UsuarioControlador
+/** Clase: ExcepcionArchivoNoCargado
  * 
  * @version: 0.1
  *  
@@ -12,6 +10,9 @@ package edu.cecar.controlador;
  * 
  * Copyrigth: CECAR
  */
+
+package edu.cecar.controlador;
+
 public class ExcepcionArchivoNoCargado extends Exception{
     public ExcepcionArchivoNoCargado(){
         this("\n!El Analizador No Pudo Cargar El Archivo¡");

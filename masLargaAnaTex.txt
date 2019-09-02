@@ -1,0 +1,8 @@
+ahora voy a escribir una linea muy larga de texto, para verificar que el analizador funciona bien
+
+este es un ejemplo de un archivo de texto en formato .txt, esta es una prueba. jader
+
+se encuentra ubicado juntos dentro del proyecto de netBeans. osnayder . mapa mapa
+
+ahora voy a repetir frases o palabras para verificar el correcto funcionamiento:
+
