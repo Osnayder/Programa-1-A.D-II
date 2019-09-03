@@ -14,8 +14,6 @@
 package edu.cecar.controlador;
 
 import edu.cecar.modelo.TextoPlano;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class ProcesarExpresion {
     
