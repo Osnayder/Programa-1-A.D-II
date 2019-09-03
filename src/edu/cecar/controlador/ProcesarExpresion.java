@@ -152,7 +152,20 @@ public class ProcesarExpresion {
                         break;
                     case "-d": 
                         if(expresionCargada.getExpresion().getArgumen2()>0){
-                            System.out.print("-d aun no esta programado ");
+                            String palabra = "";
+                            for(int f=0; f<archivoLeido.length(); f++){
+                                if(archivoLeido.charAt(f)!=' ' && archivoLeido.charAt(f)!='\n'){
+                                    palabra = palabra+archivoLeido.charAt(f);
+                                }
+                                
+                                if(archivoLeido.charAt(f)==' '){
+                                    System.out.println("Plabra cargada: "+palabra);
+                                    palabra = "";
+                                }
+                                
+                            }
+                            
+                            System.out.println("\t!Argumento -c Procesado Exitosamente¡ ");
                         }
                         break;
                     case "-l":
