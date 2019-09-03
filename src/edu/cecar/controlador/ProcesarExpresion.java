@@ -6,7 +6,7 @@
  * 
  * Fecha de Modificación: 
  * 
- * @author: Osnayder Conde Rodriguez
+ * @author: Osnayder Conde Rodriguez - Jader José Arcia Baldovino
  * 
  * Copyrigth: CECAR
  */
@@ -14,6 +14,8 @@
 package edu.cecar.controlador;
 
 import edu.cecar.modelo.TextoPlano;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ProcesarExpresion {
     
@@ -124,6 +126,7 @@ public class ProcesarExpresion {
                             contador = 0;
                             puente = cantEnLinea[contador]+" ";
                             contador++;
+                            
                             for(int f=0; f<archivoLeido.length()-1; f++){
                                 puente = puente + archivoLeido.charAt(f);
                                 if(archivoLeido.charAt(f)=='\n'){
@@ -135,12 +138,16 @@ public class ProcesarExpresion {
                             textoGuardar = new TextoPlano();
                             textoGuardar.setTexto(puente);
                             textoGuardar.setRuta("busqueda");
-                         if(textoGuardar!=null){
-                             FlujoArchivo.flujoSalida(textoGuardar);
+                        
+                            try {
+                                FlujoArchivo.flujoSalida(textoGuardar);
+                            } catch (ExcepcionGuardarArchivo ex) {
+                                System.out.println(ex.getMessage());
+                            }
+                            
                              System.out.println("\t!Argumento -c Procesado Exitosamente¡ ");
                              System.out.println("Nombre Archivo Resultado de Argumento <-c>: "+textoGuardar.getRuta()+"AnaTex.txt");
-                         }
-                         
+
                         }
                         break;
                     case "-d": 
@@ -189,7 +196,12 @@ public class ProcesarExpresion {
                             }
                             textoGuardar.setTexto(puente);
                             textoGuardar.setRuta("masLarga");
-                            FlujoArchivo.flujoSalida(textoGuardar);
+                            
+                            try {
+                                FlujoArchivo.flujoSalida(textoGuardar);
+                            } catch (ExcepcionGuardarArchivo ex) {
+                                System.out.println(ex.getMessage());
+                            }
                             
                             System.out.println("\t!Argumento -l Procesado Exitosamente¡ ");
                             System.out.println("Nombre Archivo Resultado de Argumento <-l>: "+textoGuardar.getRuta()+"AnaTex.txt");
@@ -239,7 +251,12 @@ public class ProcesarExpresion {
                             }
                             textoGuardar.setTexto(puente);
                             textoGuardar.setRuta("masCorta");
-                            FlujoArchivo.flujoSalida(textoGuardar);
+                            
+                            try {
+                                FlujoArchivo.flujoSalida(textoGuardar);
+                            } catch (ExcepcionGuardarArchivo ex) {
+                                System.out.println(ex.getMessage());
+                            }
                             
                             System.out.println("\t!Argumento -s Procesado Exitosamente¡ ");
                             System.out.println("Nombre Archivo Resultado de Argumento <-s>: "+textoGuardar.getRuta()+"AnaTex.txt");

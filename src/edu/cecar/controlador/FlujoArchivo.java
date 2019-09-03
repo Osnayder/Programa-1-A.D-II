@@ -6,7 +6,7 @@
  * 
  * Fecha de Modificación: 
  * 
- * @author: Osnayder Conde Rodriguez
+ * @author: Osnayder Conde Rodriguez - Jader José Arcia Baldovino
  * 
  * Copyrigth: CECAR
  */
@@ -22,7 +22,11 @@ import java.io.PrintWriter;
 
 public class FlujoArchivo {
     
-    public static void flujoSalida(TextoPlano textoplano){
+    public static void flujoSalida(TextoPlano textoplano) throws ExcepcionGuardarArchivo{
+        if(textoplano==null){
+             throw new ExcepcionGuardarArchivo("!No se Definio El Archivo a Guardar¡"); 
+        }
+        
        try {
             PrintWriter writer = new PrintWriter(textoplano.getRuta()+"AnaTex.txt", "UTF-8");
             writer.print(textoplano.getTexto());

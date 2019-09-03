@@ -6,7 +6,7 @@
  * 
  * Fecha de Modificación: 
  * 
- * @author: Osnayder Conde Rodriguez
+ * @author: Osnayder Conde Rodriguez - Jader José Arcia Baldovino
  * 
  * Copyrigth: CECAR
  */
