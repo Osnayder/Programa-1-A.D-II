@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="Multi-file class diagram">
+  <ClassDiagramComponents>
+    <Class name="AnalizadorTexto" package="edu.cecar.arranque" visibility="public" xPosition="759.0" yPosition="585.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String[]" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="CargarExpresion" package="edu.cecar.controlador" visibility="public" xPosition="1590.0" yPosition="179.0">
+      <Fields>
+        <Field name="estadoCarga" type="int" visibility="private"/>
+        <Field name="banderaP" type="boolean" visibility="private"/>
+        <Field name="expresion" type="Expresion" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String[]" name="args"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getExpresion" returnType="Expresion" visibility="public"/>
+        <Method name="isEstadoDeLectura" returnType="int" visibility="public"/>
+        <Method name="getArgumentosCargados" returnType="void" visibility="public"/>
+        <Method name="getEstadoLectura3Comando" returnType="boolean" visibility="public"/>
+        <Method name="esNumero" returnType="boolean" visibility="public">
+          <Argument type="String" name="cadena"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ExcepcionArchivoNoCargado" package="edu.cecar.controlador" visibility="public" xPosition="752.0" yPosition="62.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="String" name="args"/>
+        </Constructor>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="ExcepcionCargarArgumentos" package="edu.cecar.controlador" visibility="public" xPosition="752.0" yPosition="246.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="String" name="arg"/>
+        </Constructor>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="ExcepcionGuardarArchivo" package="edu.cecar.controlador" visibility="public" xPosition="759.0" yPosition="421.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="args"/>
+        </Constructor>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="FlujoArchivo" package="edu.cecar.controlador" visibility="public" xPosition="1388.0" yPosition="656.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="flujoSalida" returnType="void" visibility="public" isStatic="true">
+          <Argument type="TextoPlano" name="textoplano"/>
+        </Method>
+        <Method name="flujoEntrada" returnType="String" visibility="public" isStatic="true">
+          <Argument type="String" name="ruta"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Expresion" package="edu.cecar.modelo" visibility="public" xPosition="1116.0" yPosition="73.0">
+      <Fields>
+        <Field name="comando1" type="String" visibility="private"/>
+        <Field name="argumen1" type="String" visibility="private"/>
+        <Field name="comando2" type="String" visibility="private"/>
+        <Field name="argumen2" type="int" visibility="private"/>
+        <Field name="comando3" type="String" visibility="private"/>
+        <Field name="argumen3" type="int" visibility="private"/>
+        <Field name="dirrecionArchivo" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="getComando1" returnType="String" visibility="public"/>
+        <Method name="setComando1" returnType="void" visibility="public">
+          <Argument type="String" name="comando1"/>
+        </Method>
+        <Method name="getArgumen1" returnType="String" visibility="public"/>
+        <Method name="setArgumen1" returnType="void" visibility="public">
+          <Argument type="String" name="argumen1"/>
+        </Method>
+        <Method name="getComando2" returnType="String" visibility="public"/>
+        <Method name="setComando2" returnType="void" visibility="public">
+          <Argument type="String" name="comando2"/>
+        </Method>
+        <Method name="getArgumen2" returnType="int" visibility="public"/>
+        <Method name="setArgumen2" returnType="void" visibility="public">
+          <Argument type="int" name="argumen2"/>
+        </Method>
+        <Method name="getComando3" returnType="String" visibility="public"/>
+        <Method name="setComando3" returnType="void" visibility="public">
+          <Argument type="String" name="comando3"/>
+        </Method>
+        <Method name="getArgumen3" returnType="int" visibility="public"/>
+        <Method name="setArgumen3" returnType="void" visibility="public">
+          <Argument type="int" name="argumen3"/>
+        </Method>
+        <Method name="getDirrecionArchivo" returnType="String" visibility="public"/>
+        <Method name="setDirrecionArchivo" returnType="void" visibility="public">
+          <Argument type="String" name="dirrecionArchivo"/>
+        </Method>
+        <Method name="getEstadoComando1" returnType="boolean" visibility="public"/>
+        <Method name="getEstadoComando2" returnType="boolean" visibility="public"/>
+        <Method name="getEstadoComando3" returnType="boolean" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="TextoPlano" package="edu.cecar.modelo" visibility="public" xPosition="1820.0" yPosition="503.0">
+      <Fields>
+        <Field name="texto" type="String" visibility="private"/>
+        <Field name="ruta" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="String" name="texto"/>
+          <Argument type="String" name="ruta"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getRuta" returnType="String" visibility="public"/>
+        <Method name="setRuta" returnType="void" visibility="public">
+          <Argument type="String" name="ruta"/>
+        </Method>
+        <Method name="getTexto" returnType="String" visibility="public"/>
+        <Method name="setTexto" returnType="void" visibility="public">
+          <Argument type="String" name="texto"/>
+        </Method>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <UseRelation source="edu.cecar.controlador.FlujoArchivo" target="edu.cecar.modelo.TextoPlano" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="expresion" source="edu.cecar.controlador.CargarExpresion" target="edu.cecar.modelo.Expresion" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="edu.cecar.controlador.CargarExpresion" target="edu.cecar.modelo.Expresion" sourceCardinality="1..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
+</ClassDiagram>
