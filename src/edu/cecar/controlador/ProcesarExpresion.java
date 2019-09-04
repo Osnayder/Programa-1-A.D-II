@@ -105,6 +105,7 @@ public class ProcesarExpresion {
                 switch(argumentos[i]){
                     case "-c": 
                         if(expresionCargada.getExpresion().getArgumen1()!=null){
+                            System.out.println("==========================================================");
                             for(int j=0; j<archivoLeido.length(); j++){
                                 if(archivoLeido.charAt(j)=='\n'){
                                     contador2++;
@@ -150,20 +151,61 @@ public class ProcesarExpresion {
                         break;
                     case "-d": 
                         if(expresionCargada.getExpresion().getArgumen2()>0){
+                            System.out.println("==========================================================");
                             String palabra = "";
+                            contador = 0;
+                            int[] lista;
+                            
                             for(int f=0; f<archivoLeido.length(); f++){
-                                if(archivoLeido.charAt(f)!=' ' && archivoLeido.charAt(f)!='\n'){
+                                if(archivoLeido.charAt(f)!=' ' && archivoLeido.charAt(f)!='\n'){          
                                     palabra = palabra+archivoLeido.charAt(f);
-                                }
-                                
-                                if(archivoLeido.charAt(f)==' '){
-                                    System.out.println("Plabra cargada: "+palabra);
+                                }else if(archivoLeido.charAt(f)==' ' ||  archivoLeido.charAt(f)=='\n'){
+                                    contador++;
                                     palabra = "";
                                 }
-                                
                             }
                             
-                            System.out.println("\t!Argumento -c Procesado Exitosamente¡ ");
+                            lista = new int[contador];
+                            String masRepetida = null;
+                            int mayor = 0;
+                            contador = 0;
+                            contador2 = 0;
+                            for(int f=0; f<archivoLeido.length(); f++){
+                                if(archivoLeido.charAt(f)!=' ' && archivoLeido.charAt(f)!='\n'){          
+                                    palabra = palabra+archivoLeido.charAt(f);
+                                }else if(archivoLeido.charAt(f)==' ' ||  archivoLeido.charAt(f)=='\n'){
+                                    contador = 0;
+                                    for(int d=0; d<archivoLeido.length(); d++){
+                                        if(!palabra.equals(" ") && (palabra.length()>0) && (contador<palabra.length())){
+                                            if(archivoLeido.charAt(d)==palabra.charAt(contador) ){
+                                                
+                                                if(contador==(palabra.length()-1) && (archivoLeido.charAt(d+1)==' ')){
+                                                   lista[contador2]++;
+                                      
+                                                   contador=0;
+                                                }else{
+                                                   contador++;   
+                                                }
+                                                
+                                                if(lista[contador2]>mayor){
+                                                        mayor = lista[contador2];
+                                                        masRepetida = palabra;
+                                                }
+
+                                            }else{
+                                                contador=0;
+                                            }
+                                        }
+                                        
+                                    }
+                                    
+                                    contador2 ++;
+                                    palabra = "";
+                                }
+                            }
+                            
+                            
+                            System.out.println("\t!Argumento -d Procesado Exitosamente¡ \n La Palabra que mas se repite es: "+masRepetida);
                         }
                         break;
                     case "-l":
@@ -173,6 +215,8 @@ public class ProcesarExpresion {
                             contador = 0;
                             contador2 = 0;
                             listaDeLineasMayores[contador]=0;
+                            
+                            System.out.println("==========================================================");
                             
                             for(int f=0; f<expresionCargada.getExpresion().getArgumen3(); f++){
                                 for(int l=0; l<cantidadLineasArchivo; l++){
@@ -228,7 +272,7 @@ public class ProcesarExpresion {
                             int listaDeLineasMenores[] = new int[expresionCargada.getExpresion().getArgumen3()];
                             contador = 0;
                             contador2 = 0;
-            
+                            System.out.println("==========================================================");
                             for(int f=0; f<expresionCargada.getExpresion().getArgumen3(); f++){
                                listaDeLineasMenores[contador]=500*500;
                                 for(int l=0; l<cantidadLineasArchivo; l++){
