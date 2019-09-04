@@ -89,9 +89,12 @@ public class CargarExpresion {
                                     }
                                   break;
                                 default:
-                                    if(!this.esNumero(args[i]) && !args[i-1].equals("-c") && i<(args.length-2)){
-                                       throw new ExcepcionCargarArgumentos("!Upss¡ Introdujo Argumentos Invalidos"); 
+                                    if(i!=0){
+                                        if(!this.esNumero(args[i]) && !args[i-1].equals("-c") && i<(args.length-2)){
+                                            throw new ExcepcionCargarArgumentos("!Upss¡ Introdujo Argumentos Invalidos"); 
+                                        }
                                     }
+                                    
                             }
                         } 
                 if((banderaP!=true) || banderaS){

@@ -2,7 +2,7 @@
 
 <ClassDiagram name="Multi-file class diagram">
   <ClassDiagramComponents>
-    <Class name="AnalizadorTexto" package="edu.cecar.arranque" visibility="public" xPosition="759.0" yPosition="585.0">
+    <Class name="AnalizadorTexto" package="edu.cecar.arranque" visibility="public" xPosition="76.0" yPosition="493.0">
       <Fields/>
       <Constructors/>
       <Methods>
@@ -11,7 +11,7 @@
         </Method>
       </Methods>
     </Class>
-    <Class name="CargarExpresion" package="edu.cecar.controlador" visibility="public" xPosition="1590.0" yPosition="179.0">
+    <Class name="CargarExpresion" package="edu.cecar.controlador" visibility="public" xPosition="1008.0" yPosition="58.0">
       <Fields>
         <Field name="estadoCarga" type="int" visibility="private"/>
         <Field name="banderaP" type="boolean" visibility="private"/>
@@ -32,7 +32,7 @@
         </Method>
       </Methods>
     </Class>
-    <Class name="ExcepcionArchivoNoCargado" package="edu.cecar.controlador" visibility="public" xPosition="752.0" yPosition="62.0">
+    <Class name="ExcepcionArchivoNoCargado" package="edu.cecar.controlador" visibility="public" xPosition="69.0" yPosition="58.0">
       <Fields/>
       <Constructors>
         <Constructor visibility="public"/>
@@ -42,7 +42,7 @@
       </Constructors>
       <Methods/>
     </Class>
-    <Class name="ExcepcionCargarArgumentos" package="edu.cecar.controlador" visibility="public" xPosition="752.0" yPosition="246.0">
+    <Class name="ExcepcionCargarArgumentos" package="edu.cecar.controlador" visibility="public" xPosition="69.0" yPosition="211.0">
       <Fields/>
       <Constructors>
         <Constructor visibility="public"/>
@@ -52,7 +52,7 @@
       </Constructors>
       <Methods/>
     </Class>
-    <Class name="ExcepcionGuardarArchivo" package="edu.cecar.controlador" visibility="public" xPosition="759.0" yPosition="421.0">
+    <Class name="ExcepcionGuardarArchivo" package="edu.cecar.controlador" visibility="public" xPosition="76.0" yPosition="367.0">
       <Fields/>
       <Constructors>
         <Constructor visibility="public">
@@ -61,7 +61,7 @@
       </Constructors>
       <Methods/>
     </Class>
-    <Class name="FlujoArchivo" package="edu.cecar.controlador" visibility="public" xPosition="1388.0" yPosition="656.0">
+    <Class name="FlujoArchivo" package="edu.cecar.controlador" visibility="public" xPosition="1008.0" yPosition="348.0">
       <Fields/>
       <Constructors/>
       <Methods>
@@ -73,7 +73,7 @@
         </Method>
       </Methods>
     </Class>
-    <Class name="Expresion" package="edu.cecar.modelo" visibility="public" xPosition="1116.0" yPosition="73.0">
+    <Class name="Expresion" package="edu.cecar.modelo" visibility="public" xPosition="432.0" yPosition="71.0">
       <Fields>
         <Field name="comando1" type="String" visibility="private"/>
         <Field name="argumen1" type="String" visibility="private"/>
@@ -120,7 +120,7 @@
         <Method name="getEstadoComando3" returnType="boolean" visibility="public"/>
       </Methods>
     </Class>
-    <Class name="TextoPlano" package="edu.cecar.modelo" visibility="public" xPosition="1820.0" yPosition="503.0">
+    <Class name="TextoPlano" package="edu.cecar.modelo" visibility="public" xPosition="898.0" yPosition="544.0">
       <Fields>
         <Field name="texto" type="String" visibility="private"/>
         <Field name="ruta" type="String" visibility="private"/>
@@ -145,8 +145,8 @@
     </Class>
   </ClassDiagramComponents>
   <ClassDiagramRelations>
-    <UseRelation source="edu.cecar.controlador.FlujoArchivo" target="edu.cecar.modelo.TextoPlano" sourceCardinality="1..1" targetCardinality="1..1"/>
     <HasRelation name="expresion" source="edu.cecar.controlador.CargarExpresion" target="edu.cecar.modelo.Expresion" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="edu.cecar.controlador.FlujoArchivo" target="edu.cecar.modelo.TextoPlano" sourceCardinality="1..1" targetCardinality="1..1"/>
     <UseRelation source="edu.cecar.controlador.CargarExpresion" target="edu.cecar.modelo.Expresion" sourceCardinality="1..1" targetCardinality="1..1"/>
   </ClassDiagramRelations>
 </ClassDiagram>
